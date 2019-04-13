@@ -1,0 +1,17 @@
+class Solution:
+    def GetLeastNumbers_Solution(self, tinput, k):
+        # write code here
+        if tinput is None or k <= 0 or k > len(tinput):
+            return []
+        self.mySort(tinput)
+        return tinput[:k]
+    def mySort(self, arr):
+        if arr is None or len(arr) <= 1:
+            return
+        for i in range(len(arr) - 1):
+            idx_min = i
+            for j in range(i, len(arr)):
+                if arr[j] < arr[idx_min]:
+                    idx_min = j
+            arr[i], arr[idx_min] = arr[idx_min], arr[i]
+        return
