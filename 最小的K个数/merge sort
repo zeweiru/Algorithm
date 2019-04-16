@@ -1,0 +1,36 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def GetLeastNumbers_Solution(self, tinput, k):
+        # write code here
+        if tinput is None or k <= 0 or k > len(tinput):
+            return []
+        array = self.mySort(tinput)
+        return array[:k]
+    def mySort(self, arr):
+        if len(arr) <= 1:
+            return arr
+        start, end = 0, len(arr) - 1
+        mid = (start + end) / 2
+        former = arr[start:mid + 1]
+        later = arr[mid + 1:]
+        former = self.mySort(former)
+        later = self.mySort(later)
+        arr = self.myMerge(former, later)
+        return arr
+    def myMerge(self, former, later):
+        List = []
+        i, j = 0, 0
+        while i < len(former) and j < len(later):
+            if former[i] < later[j]:
+                List.append(former[i])
+                i += 1
+            else:
+                List.append(later[j])
+                j += 1
+        while i < len(former):
+            List.append(former[i])
+            i += 1
+        while j < len(later):
+            List.append(later[j])
+            j+= 1
+        return List
