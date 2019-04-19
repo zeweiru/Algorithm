@@ -7,34 +7,40 @@
 class Solution:
     # 返回 RandomListNode
     def Clone(self, pHead):
-        if not pHead:
+        # write code here
+        if pHead is None:
             return None
-        #创建新链表
-        pCur=pHead
+        # build a new list
+        pCur = pHead
         while pCur:
-            pCur_next=pCur.next
-            newnode=RandomListNode(pCur.label)
-            newnode.next=pCur_next
-            pCur.next=newnode
-            pCur=pCur_next
-        #改变新链表的random指针
-        pCur=pHead
+            pNxt = pCur.next
+            nn = RandomListNode(pCur.label)
+            pCur.next = nn
+            nn.next = pNxt
+            pCur = pNxt
+        # update random pointers
+        pCur = pHead
         while pCur:
-            pCur_random=pCur.random
-            newnode=pCur.next
-            if pCur_random:
-                newnode.random=pCur_random.next
-            pCur=newnode.next
-        pCur=pHead
-        result=pHead.next
-        #分离两链表
-        while pCur:
-            newnode=pCur.next
-            pCur_next=newnode.next
-            pCur.next=pCur_next
-            if pCur_next:
-                newnode.next=pCur_next.next
+            pRan = pCur.random
+            nn = pCur.next
+            pNxt = nn.next
+            if pRan:
+                nn.random = pRan.next
             else:
-                newnode.next=None
-            pCur=pCur.next
-        return result
+                nn.random = None
+            pCur = pNxt
+        # find the result
+        res = pHead.next
+        # seperate lists
+        pCur = pHead
+        while pCur:
+            nn = pCur.next
+            pCur.next = nn.next
+            pNxt = pCur.next
+            if pNxt:
+                nn.next = pNxt.next
+            else:
+                nn.next = None
+            pCur = pNxt
+        
+        return res
