@@ -1,0 +1,40 @@
+# -*- coding:utf-8 -*-
+# class RandomListNode:
+#     def __init__(self, x):
+#         self.label = x
+#         self.next = None
+#         self.random = None
+class Solution:
+    # 返回 RandomListNode
+    def Clone(self, pHead):
+        if not pHead:
+            return None
+        #创建新链表
+        pCur=pHead
+        while pCur:
+            pCur_next=pCur.next
+            newnode=RandomListNode(pCur.label)
+            newnode.next=pCur_next
+            pCur.next=newnode
+            pCur=pCur_next
+        #改变新链表的random指针
+        pCur=pHead
+        while pCur:
+            pCur_random=pCur.random
+            newnode=pCur.next
+            if pCur_random:
+                newnode.random=pCur_random.next
+            pCur=newnode.next
+        pCur=pHead
+        result=pHead.next
+        #分离两链表
+        while pCur:
+            newnode=pCur.next
+            pCur_next=newnode.next
+            pCur.next=pCur_next
+            if pCur_next:
+                newnode.next=pCur_next.next
+            else:
+                newnode.next=None
+            pCur=pCur.next
+        return result
