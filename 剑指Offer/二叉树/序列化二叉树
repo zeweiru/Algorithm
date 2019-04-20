@@ -14,7 +14,7 @@ class Solution:
         return self.deserializeTree(list)
 
     def deserializeTree(self, list):
-        if len(list) <= 0:
+        if len(list) == 0:
             return None
         val = list.pop(0)
         root = None
