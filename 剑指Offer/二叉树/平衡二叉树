@@ -1,0 +1,20 @@
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def IsBalanced_Solution(self, pRoot):
+        # write code here
+        self.flag = True
+        self.TreeDepth(pRoot)
+        return self.flag
+    def TreeDepth(self, root):
+        if root is None or self.flag is False:
+            return 0
+        left = self.TreeDepth(root.left)
+        right = self.TreeDepth(root.right)
+        if abs(left - right) > 1:
+            self.flag = False
+        return max(left , right) + 1
