@@ -7,16 +7,12 @@
 class Solution:
     def HasSubtree(self, pRoot1, pRoot2):
         # write code here
-        if pRoot1 == None or pRoot2 == None:
+        if pRoot2 is None or pRoot1 is None:
             return False
-        return self.isSubtree(pRoot1, pRoot2)
-
-    def isSubtree(self, p1, p2):
-        if p2 == None:
+        return self.IsSubtree(pRoot1, pRoot2) or self.HasSubtree(pRoot1.left, pRoot2) or self.HasSubtree(pRoot1.right, pRoot2)
+    def IsSubtree(self, root1, root2):
+        if root2 is None:
             return True
-        if p1 == None:
-            return p1 == p2
-        res = False
-        if p1.val == p2.val:
-            res = self.isSubtree(p1.left, p2.left) and self.isSubtree(p1.right, p2.right)
-        return res or self.isSubtree(p1.left, p2) or self.isSubtree(p1.right, p2)
+        if root1 is None or root1.val != root2.val:
+            return False
+        return self.IsSubtree(root1.left, root2.left) and self.IsSubtree(root1.right, root2.right)
