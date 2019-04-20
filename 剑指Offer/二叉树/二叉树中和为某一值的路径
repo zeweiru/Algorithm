@@ -1,0 +1,31 @@
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    # 返回二维列表，内部每个列表表示找到的路径
+    def FindPath(self, root, expectNumber):
+        # write code here
+        if root is None:
+            return []
+        
+        res = []
+        path = []
+        self.searchPath(root, expectNumber, res, path)
+        
+        return res
+    
+    def searchPath(self, root, target, res, path):
+        if root is None:
+            return
+        
+        path.append(root.val)
+        if root.left is None and root.right is None:
+            if root.val == target:
+                res.append(path[:])
+                
+        self.searchPath(root.left, target - root.val, res, path)
+        self.searchPath(root.right, target - root.val, res, path)
+        path.pop()
