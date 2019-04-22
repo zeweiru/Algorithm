@@ -1,0 +1,15 @@
+class Solution:
+    def reOrderArray(self, array):
+        even = 0
+        while even < len(array):
+            while even < len(array) and array[even]%2 == 1:
+                even += 1
+            odd = even+1
+            while odd < len(array) and array[odd]%2 == 0:
+                odd += 1
+            if odd < len(array):
+                array.insert(even,array.pop(odd))
+                even += 1
+            else:
+                break
+        return array
