@@ -4,11 +4,15 @@ class Solution:
         # write code here
         if len(rotateArray) == 0:
             return 0
-        
-        res = rotateArray[0]
-        
-        for i in range(len(rotateArray)):
-            if rotateArray[i] <= res:
-                res = rotateArray[i]
-                
-        return res
+        if len(rotateArray) == 2:
+            return rotateArray[1]
+        mid = len(rotateArray) // 2
+        if rotateArray[mid] > rotateArray[0]:
+            return self.minNumberInRotateArray(rotateArray[mid:])
+        elif rotateArray[mid] < rotateArray[0]:
+            return self.minNumberInRotateArray(rotateArray[:mid + 1])
+        else:
+            for i in range(len(rotateArray)):
+                if rotateArray[i] < rotateArray[0]:
+                    return rotateArray[i]
+            return rotateArray[0]
