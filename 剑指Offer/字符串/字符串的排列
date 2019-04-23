@@ -1,0 +1,18 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def Permutation(self, ss):
+        # write code here
+        if len(ss) == 0:
+            return []
+        path = ''
+        res = []
+        self.permutate(ss, res, path)
+        # delete the duplicated strings
+        uni = list(set(res))
+        return sorted(uni)
+    
+    def permutate(self, ss, res, path):
+        if ss == '':
+            res.append(path)
+        for i in range(len(ss)):
+            self.permutate(ss[:i] + ss[i+1:], res, path + ss[i])
