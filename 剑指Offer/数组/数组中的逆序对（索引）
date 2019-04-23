@@ -1,0 +1,12 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def InversePairs(self, data):
+        # write code here
+        if data == []:
+            return 0
+        else:
+            num = 0
+            while len(data) > 1:
+                num += data.index(min(data))
+                data.pop(data.index(min(data)))
+            return num % 1000000007
