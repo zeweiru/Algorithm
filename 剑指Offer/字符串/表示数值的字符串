@@ -4,12 +4,8 @@ class Solution:
         # write code here
         if s is None or len(s) == 0:
             return False
-
-        # 是否有e
         hasE = False
-        # 是否有小数
         isDecimal = False
-        # 是否有+-符号
         hasSign = False
 
         for i in range(len(s)):
