@@ -1,0 +1,15 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def jumpFloor(self, number):
+        # write code here
+        if number <= 0:
+            return 0
+        res = []
+        res.extend([1, 2])
+        if number <= 2:
+            return res[number - 1]
+        for i in range(2, number):
+            res_app = res[i - 1] + res[i - 2]
+            res.append(res_app)
+            
+        return res[number - 1]
