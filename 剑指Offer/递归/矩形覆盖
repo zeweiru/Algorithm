@@ -1,0 +1,14 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def rectCover(self, number):
+        # write code here
+        if number <= 0:
+            return 0
+        if number <= 2:
+            return number
+        res = [0, 1, 2]
+        for i in range(3, number + 1):
+            cur = res[i - 1] + res[i - 2]
+            res.append(cur)
+            
+        return res[number]
