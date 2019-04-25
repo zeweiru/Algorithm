@@ -2,20 +2,22 @@
 class Solution:
     def __init__(self):
         self.stack = []
-        self.minstack = []
+        self.stackM = []
         self.minm = float('inf')
     def push(self, node):
         # write code here
         if node < self.minm:
+            self.stackM.append(node)
             self.minm = node
-            self.minstack.append(self.minm)
         self.stack.append(node)
     def pop(self):
         # write code here
         if self.stack != []:
             if self.stack[-1] == self.minm:
-                self.minstack.pop()
-            self.stack.pop()
+                self.stackM.pop()
+                self.minm = self.stackM[-1]
+            return self.stack.pop()
+        return None
     def top(self):
         # write code here
         if self.stack != []:
@@ -24,4 +26,4 @@ class Solution:
             return None
     def min(self):
         # write code here
-        return self.minstack[-1]
+        return self.minm
