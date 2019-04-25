@@ -1,0 +1,13 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def Fibonacci(self, n):
+        # write code here
+        res = []
+        res.extend([0, 1])
+        if n <= 1:
+            return res[n]
+        for i in range(2, n + 1):
+            my_fib = res[i - 1] + res[i - 2]
+            res.append(my_fib)
+            
+        return res[n]
