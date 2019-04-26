@@ -1,0 +1,19 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def Power(self, base, exponent):
+        # write code here
+        if exponent >= 0:
+            return self.getPower(base, exponent)
+        else:
+            return 1 / self.getPower(base, -exponent)
+        
+    def getPower(self, base, exponent):
+        if base == 0:
+            return 0
+        elif exponent == 0:
+            return 1
+        res = 1
+        for i in range(exponent):
+            res *= base
+            
+        return res
