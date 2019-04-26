@@ -1,3 +1,5 @@
+########################################### 方法一 ##############################################
+
 # -*- coding:utf-8 -*-
 class Solution:
     def NumberOf1(self, n):
@@ -14,3 +16,17 @@ class Solution:
                 cnt += 1
             mask <<= 1
         return cnt
+
+########################################### 方法二 ##############################################
+
+# -*- coding:utf-8 -*-
+class Solution:
+    def NumberOf1(self, n):
+        # write code here
+        if n < 0:
+            n &= 0xffffffff
+        count = 0
+        while n:
+            count += 1
+            n = n & (n - 1)
+        return count
