@@ -1,0 +1,26 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    # matrix类型为二维列表，需要返回列表
+    def printMatrix(self, matrix):
+        # write code here
+        res = []
+        if matrix is None:
+            return res
+        rows = len(matrix)
+        cols = len(matrix[0])
+        x1, x2, y1, y2 = 0, cols - 1, 0, rows - 1
+        while x1 <= x2 and y1 <= y2:
+            for i in range(x1, x2 + 1):
+                res.append(matrix[y1][i])
+            for i in range(y1 + 1, y2 + 1):
+                res.append(matrix[i][x2])
+            if x1 < x2 and y1 < y2:
+                for i in range(x2 - 1, x1, -1):
+                    res.append(matrix[y2][i])
+                for i in range(y2, y1, -1):
+                    res.append(matrix[i][x1])
+            x1 += 1
+            y1 += 1
+            x2 -= 1
+            y2 -= 1
+        return res
