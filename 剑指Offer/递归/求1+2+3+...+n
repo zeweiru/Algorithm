@@ -1,0 +1,8 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def Sum_Solution(self, n):
+        # write code here
+        res = n
+        temp = n > 0 and self.Sum_Solution(n - 1)
+        res += temp
+        return res
