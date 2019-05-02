@@ -1,0 +1,19 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    # 返回对应char
+    def __init__(self):
+        self.charDict = {}
+        self.charList = []
+    def FirstAppearingOnce(self):
+        # write code here
+        for char in self.charList:
+            if self.charDict[char] == 1:
+                return char
+        return '#'
+    def Insert(self, char):
+        # write code here
+        if char in self.charDict:
+            self.charDict[char] += 1
+        else:
+            self.charDict[char] = 1
+        self.charList.append(char)
