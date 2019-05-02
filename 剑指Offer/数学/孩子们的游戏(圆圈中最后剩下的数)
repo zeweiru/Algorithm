@@ -1,0 +1,10 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def LastRemaining_Solution(self, n, m):
+        if n < 1:
+            return -1
+        res,i = 0, 2
+        while i <= n:
+            res = (res + m)%i
+            i += 1
+        return res
