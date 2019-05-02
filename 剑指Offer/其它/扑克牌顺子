@@ -1,0 +1,18 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def IsContinuous(self, numbers):
+        # write code here
+        if numbers is None or len(numbers) != 5:
+            return False
+        numbers.sort()
+        numKings = numbers.count(0)
+        numGaps = 0
+        left = numKings
+        right = left + 1
+        while right < len(numbers):
+            if numbers[left] == numbers[right]:
+                return False
+            numGaps += numbers[right] - numbers[left] - 1
+            left += 1
+            right = left + 1
+        return numGaps <= numKings
