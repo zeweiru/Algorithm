@@ -1,0 +1,15 @@
+class Solution:
+    def FindContinuousSequence(self, tsum):
+        low = 1
+        quick = 2
+        res = []
+        while quick > low:
+            esum = sum(range(low, quick+1))
+            if esum == tsum:
+                res.append(list(range(low, quick+1)))
+                low += 1
+            elif esum < tsum:
+                quick += 1
+            else:
+                low += 1
+        return res
