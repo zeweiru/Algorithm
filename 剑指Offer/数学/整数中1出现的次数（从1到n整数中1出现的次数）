@@ -1,0 +1,17 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def NumberOf1Between1AndN_Solution(self, n):
+        # write code here
+        mult, count = 1, 0
+        while n // mult > 0:
+            high, mode = divmod(n, mult * 10)
+            cur, low = divmod(mode, mult)
+            if cur < 1:
+                count += high * mult
+            elif cur == 1:
+                count += high * mult + low + 1
+            else:
+                count += (high + 1) * mult
+            mult *= 10
+            
+        return count
